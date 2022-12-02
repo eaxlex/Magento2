@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   © EAX LEX SRL. All rights reserved.
+ * @license     http://opensource.org/licenses/osl-3.0.php - Open Software License (OSL 3.0)
+ **/
+-->
+<config
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mktr_tracker" translate="label" sortOrder="100">
+            <label>The Marketer</label>
+        </tab>
+        <section id="mktr_tracker" translate="label" type="text" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Tracker</label>
+            <tab>mktr_tracker</tab>
+            <resource>Mktr_Tracker::mktr_tracker</resource>
+            <group id="tracker" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[<span style="padding:0 !important;margin-left:0px;padding-top:2.5px !important;"><img style="height:20px;padding:0px;vertical-align: middle;" src="https://frontend.dev.themarketer.com/favicon-Web-32.png" alt="TheMarketer"> Main Settings</span>]]></label>
+                <field id="status" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tracking_key" translate="label" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tracking API Key</label>
+                    <depends>
+                        <field id="*/*/status">1</field>
+                    </depends>
+                    <comment><![CDATA[Your Tracking API Key.]]></comment>
+                </field>
+                <field id="rest_key" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>REST API Key</label>
+                    <depends>
+                        <field id="*/*/status">1</field>
+                    </depends>
+                    <comment><![CDATA[Your REST API Key.]]></comment>
+                </field>
+                <field id="customer_id" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer ID</label>
+                    <depends>
+                        <field id="*/*/status">1</field>
+                    </depends>
+                    <comment><![CDATA[Your Customer ID.]]></comment>
+                </field>
+                <field id="cron_feed" translate="label" type="select" sortOrder="31"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Activate Cron Feed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/status">1</field>
+                    </depends>
+                </field>
+                <field id="update_feed" translate="label" type="text" sortOrder="32"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Update feed every (hours)</label>
+                    <depends>
+                        <field id="*/*/cron_feed">1</field>
+                    </depends>
+                    <comment><![CDATA[Set number of hours]]></comment>
+                </field>
+                <field id="cron_review" translate="label" type="select" sortOrder="33"
+                               showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Activate Cron Review</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/status">1</field>
+                    </depends>
+                </field>
+                <field id="update_review" translate="label" type="text" sortOrder="34"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Update Review every (hours)</label>
+                    <depends>
+                        <field id="*/*/cron_review">1</field>
+                    </depends>
+                    <comment><![CDATA[Set number of hours]]></comment>
+                </field>
+                <field id="opt_in" translate="label" type="select" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Double opt-in setting</label>
+                    <source_model>Mktr\Tracker\Model\Option\Provider</source_model>
+                </field>
+                <field id="push_status" translate="label" type="select" sortOrder="41"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Push Notification</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_stock" translate="label" type="select" sortOrder="42"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Stock if negative Stock Value</label>
+                    <source_model>Mktr\Tracker\Model\Option\Stock</source_model>
+                </field>
+                <field id="allow_export" translate="label" type="select" sortOrder="43"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow orders export</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Allow orders and customer information to be exported to <strong>theMarketer</strong>]]></comment>
+                </field>
+                <field id="selectors" translate="label" type="text" sortOrder="45"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Trigger Selectors</label>
+                    <comment><![CDATA[Buttons that will trigger events Like AddToCart]]></comment>
+                </field>
+            </group>
+            <group id="attribute" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[<span style="padding:0 !important;margin-left:0px;padding-top:2.5px !important;"><img style="height:20px;padding:0px;vertical-align: middle;" src="https://frontend.dev.themarketer.com/favicon-Web-32.png" alt="TheMarketer"> Attribute Settings</span>]]></label>
+                <field id="brand" translate="label" type="text" sortOrder="44"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Attribute</label>
+                    <comment><![CDATA[Attribute Code, can be found in Stores > Attributes > Product<br /> you can use multiple attributes, Split by "|"]]></comment>
+                </field>
+                <field id="color" translate="label" type="text" sortOrder="44"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Color Attribute</label>
+                    <comment><![CDATA[Attribute Code, can be found in Stores > Attributes > Product<br /> you can use multiple attributes, Split by "|"]]></comment>
+                </field>
+                <field id="size" translate="label" type="text" sortOrder="44"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Size Attribute</label>
+                    <comment><![CDATA[Attribute Code, can be found in Stores > Attributes > Product<br /> you can use multiple attributes, Split by "|"]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
